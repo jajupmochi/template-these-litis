@@ -1,0 +1,108 @@
+%% Copyleft 2018 Jean-Baptiste Louvet
+%% Copyright (C) 2014 Dorian Depriester
+%% http://blog.dorian-depriester.fr
+%%
+%% This file may be distributed and/or modified under the conditions
+%% of the LaTeX Project Public License, either version 1.3c of this
+%% license or (at your option) any later version. The latest version
+%% of this license is in:
+%%
+%%    http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2006/05/20 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Dorian Depriester
+%% <contact [at] dorian [-] depriester [dot] fr>.
+%%
+%% This is main.tex for French PhD Thesis.
+%% See http://blog.dorian-depriester.fr/latex/template-these/template-complet-pour-manuscrit-de-these for help
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           Fichier maitre				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \documentclass[a4paper, french, 11pt, final, twoside,openright]{report}
+\documentclass[a4paper, french, 11pt, draft, twoside,openright]{report}
+\input{Preambule}		% Liste des packages et de leurs options
+\input{CommandesPerso}	% Commandes et environnements perso
+\input{PageDeGarde}
+
+
+% Méta-données du PDF
+\hypersetup{
+    pdfauthor={Auteur},
+    pdfsubject={Manuscrit de thèse de doctorat},
+    pdftitle={La meilleure manière d'aller d'un point $a$ à un point $b$},
+    pdfkeywords={TODO}%TODO
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   			Liste des fichiers à compiler					%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	\includeonly{Chapitre1,Chapitre2,Annexes}
+
+
+% Répertoire contenant les images
+\graphicspath{{Images/}}
+% Infos de la page de garde
+\author{Un super \textsc{Doctorant}}
+\title{La meilleur manière d'aller d'un point $a$ à un point $b$}
+\specialite{Informatique}
+\ecole{la meilleure école du monde}
+\date{\today}
+\directeur{Guru Directeur de thèse}
+\encadrant{Encadrant aspirant Guru} %Optionnel
+\jurya{Civilité / prénom \textsc{Nom}}{Grade / fonction / statut / lieu d'exercice}{Rapporteur ou examinateur ou directeur de thèse ou codirecteur de thèse}
+\juryb{Civilité / prénom \textsc{Nom}}{Grade / fonction / statut / lieu d'exercice}{Rapporteur ou examinateur ou directeur de thèse ou codirecteur de thèse}
+\juryc{Civilité / prénom \textsc{Nom}}{Grade / fonction / statut / lieu d'exercice}{Rapporteur ou examinateur ou directeur de thèse ou codirecteur de thèse}
+\juryd{Civilité / prénom \textsc{Nom}}{Grade / fonction / statut / lieu d'exercice}{Rapporteur ou examinateur ou directeur de thèse ou codirecteur de thèse}
+\jurye{Civilité / prénom \textsc{Nom}}{Grade / fonction / statut / lieu d'exercice}{Rapporteur ou examinateur ou directeur de thèse ou codirecteur de thèse}
+
+\newcommand{\ver}{0.0}% Version du document
+\version{\ver}% À commenter si l'on ne veut pas afficher la version et date de compilation sur la page de garde
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ajoute un timestamp de compilation dans le footer du document 
+% À commenter dans la version finale
+\fancyfoot[L]{Compilation du \today{} à \currenttime{} – version \ver}
+\pagestyle{fancy}
+\begin{document}
+% Préambule
+	\pagenumbering{roman}
+	\pagedegarde
+	\cleardoublepage
+		% Table des matières
+			\setcounter{tocdepth}{2}	% Pas besoin de trop détailler le sommaire ici (chapitres/sections/sous-sections)
+			\dominitoc						% Génération des mini-toc	\pagenumbering{arabic}
+			\tableofcontents
+		% Liste des figures
+			\renewcommand*\listfigurename{Liste des figures}
+			\listoffigures
+		% Liste des tableaux
+		\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%        Contenu du document        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\setcounter{mtc}{3}	% "Corrige" les minitocs décallés à cause des chapter* (ex : table des matières)
+	\pagenumbering{arabic}
+	\input{Chapitres/Introduction}
+	\input{Chapitres/Chapitre1}
+	\input{Chapitres/Chapitre2}
+	\input{Chapitres/Conclusion}
+	
+	% Annexes
+	\begin{appendix}
+		\pagenumbering{Roman}
+                \input{Chapitres/Annexes}
+	\end{appendix}
+
+      \bibliographystyle{alpha}
+      \bibliography{Manuscrit.bib}
+	
+\end{document}

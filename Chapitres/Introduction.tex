@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%									Introduction											%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Introduction}
+	\citationChap{
+	Au commencement était le verbe,\\
+	et le verbe était conjugué,\\
+	et le verbe était la conjugaison.
+	}{Jean Jean}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Ce template a pour but de vous aider à mettre en forme votre manuscrit de thèse.
+Il est un dérivé d'un template de Dorian \textsc{Depriester} (docteur de l'ENS des Mines de Paris, oklm).
+Son blog est disponible à l'adresse suivante: \href{http://blog.dorian-depriester.fr/latex/template-these/template-complet-pour-manuscrit-de-these}{http://blog.dorian-depriester.fr}, je vous prie de lire attentivement l'article y présentant le présent document.
+Il comporte plein d'options bien utiles que je vous recommande d'explorer.
+De nombreux paquets sont chargés par défaut dans le fichier \verb|Preambule.tex|, je vous conseille d'aller y jeter un œil pour voir tout l'attirail que vous avez à votre disposition.
+Deux paquets bien utiles sont présents: \verb|showkeys| et \verb|todonotes|.
+Des liens pointant vers leurs manuels sont donnés en commentaires à côté de leurs appels dans \verb|Preambule.tex|, je vous conseille chaudement d'y jeter un œil.
+Le premier affiche explicitement dans le document compilé les \verb|label| et leurs utilisations.
+Tout cela est visible à la fin de cette phrase et dans la suite de ce document et notamment l'introduction du chapitre~\ref{ch1}.
+Le second paquet permet de mettre des notes pour trop tard dans son manuscrit, de manière à y revenir par la suite, à l'aide de la commande \verb|\todo{}|.
+Je vous recommande l'utilisation de l'option \verb|inline| qui permet de faire un encadré sur tout une ligne, comme montré ici:
+
+\todo[inline]{Améliorer cette introduction en l'enrichissant avec des examples et une référence biblique supplémentaire.}
+
+Attention de nombreuses commandes ne fonctionnent pas dans l'environnement \verb|todo|.
+
+De manière à accélérer sa compilation, et pour faciliter son développement et debuggage, ce document est par défaut en mode \verb|draft| (attention, les images ne sont pas affichées dans ce mode).
+Ce document est donné de base en mode \verb|draft|.
+Pour quitter le mode \verb|draft|, il faut soit le supprimer des options de la commande \verb|\documentclass| du fichier \verb|Manuscrit.tex|, soit le remplacer par \verb|final| (c'est la ligne commentée juste au-dessus du \verb|\documentclass|.
+Le fait de passer en mode \verb|final| désactive \verb|showkeys| mais pas \verb|todonotes|.
+
+Pour faciliter la compilation de ce document, un \verb|Makefile| est à votre disposition.
+La commande \verb|make| dans le répertoire du rapport le compile et donne un pdf contenant la date de compilation.
+Par exemple: \verb|Manuscrit_JBL_2018_02_07_15:39:42.pdf|.
+Le \verb|Makefile| est à modifier pour mettre votre propre nom dans le nom du fichier compilé (première ligne, variable \verb|NAME|).
+Un \verb|make clean| nettoie le répertoire de compilation de tous les résidus de compilation, y compris les manuscrits compilés.
+
+Pour faciliter la gestion des différentes versions de votre manuscrit de thèse, deux bouts de code ont été ajoutés dans \verb|Manuscrit.tex|, juste avant le \verb|\begin{document}|:
+
+\begin{verbatim}
+\newcommand{\ver}{0.0}
+\version{\ver}
+\end{verbatim}
+
+Ce code permet d'indiquer sur la page de garde le numéro de version (ici 0.0, mais peut être n'importe quelle chaîne de caractères, ou formule comme \verb|\newcommand{\ver}{$\alpha$}|), à faire évoluer au fur et à mesure de l'écriture de votre chef d'œuvre. Dans la version finale, commenter ces deux lignes pour enlever la mention d'une version sur la page de garde.
+
+Le second bout de code est le suivant:
+
+\begin{verbatim}
+\fancyfoot[L]{Compilation du \today{} à \currenttime{} – version \ver}
+\pagestyle{fancy}
+\end{verbatim}
+
+Il inclut la version et la date de compilation dans le pied de page, de manière à savoir sur quelle version du document on est en train de travailler sans avoir à imprimer systématiquement la page de garde.
+Attention, ce second bout de code ne fonctionne pas si l'on commente le premier, il faut donc commenter les deux à la fois (ou seulement ce second).
